@@ -6,6 +6,7 @@ from pathlib import Path
 class_capacity = {"Yoga": 3, "HIIT": 2, "Spin": 4}
 rosters = {}
 
+
 def book_class(member_id, class_name, attendance_log=[]):
     if class_name not in rosters:
         rosters[class_name] = []
@@ -16,30 +17,37 @@ def book_class(member_id, class_name, attendance_log=[]):
     attendance_log.append("%s -> %s" % (member_id, class_name))
     return True
 
+
 def cancel_booking(member_id, class_name):
     try:
         rosters[class_name].remove(member_id)
-    except:
+    except (KeyError, ValueError):
         print("Nothing to cancel")
+
 
 def set_capacity(class_name, seats):
     class_capacity[class_name] = seats
+
 
 def addMembers(class_name, count):
     for i in range(count):
         book_class("GUEST-" + str(i), class_name)
 
+
 def export_roster(file="gym_schedule.json"):
     f = open(file, "w")
     json.dump(rosters, f)
+
 
 def clear_old_exports(prefix="old_"):
     for old_file in Path.cwd().glob(glob.escape(prefix) + "*.json"):
         old_file.unlink()
 
+
 def show_rosters():
     for c in rosters:
         print(c, ":", ", ".join(str(m) for m in rosters[c]))
+
 
 def main():
     book_class("M1", "Yoga")
@@ -56,5 +64,6 @@ def main():
     clear_old_exports()
     export_roster()
     show_rosters()
+
 
 main()
