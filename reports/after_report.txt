@@ -1,0 +1,48 @@
+==================================================================
+ COMBINED STATIC ANALYSIS REPORT - AFTER FIXES (final code)
+ File analysed: gym_system.py   |   Lab 5: Static Code Analysis
+==================================================================
+
+------------------------------------------------------------------
+ PYLINT    (command: pylint gym_system.py)
+------------------------------------------------------------------
+
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+
+
+------------------------------------------------------------------
+ BANDIT    (command: bandit -r gym_system.py)
+------------------------------------------------------------------
+[main]	INFO	profile include tests: None
+[main]	INFO	profile exclude tests: None
+[main]	INFO	cli include tests: None
+[main]	INFO	cli exclude tests: None
+[main]	INFO	running on Python 3.13.17
+Run started:2026-10-23 02:53:23.750343+00:00
+
+Test results:
+	No issues identified.
+
+Code scanned:
+	Total lines of code: 102
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 0
+Files skipped (0):
+
+------------------------------------------------------------------
+ FLAKE8    (command: flake8 gym_system.py)
+------------------------------------------------------------------
+(no output: Flake8 found no issues)
