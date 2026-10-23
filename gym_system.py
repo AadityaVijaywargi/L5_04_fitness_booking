@@ -1,5 +1,6 @@
+import glob
 import json
-import os
+from pathlib import Path
 
 # Global state
 class_capacity = {"Yoga": 3, "HIIT": 2, "Spin": 4}
@@ -33,7 +34,8 @@ def export_roster(file="gym_schedule.json"):
     json.dump(rosters, f)
 
 def clear_old_exports(prefix="old_"):
-    os.system("rm -f " + prefix + "*.json")
+    for old_file in Path.cwd().glob(glob.escape(prefix) + "*.json"):
+        old_file.unlink()
 
 def show_rosters():
     for c in rosters:
