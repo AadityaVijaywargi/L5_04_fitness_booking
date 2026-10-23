@@ -1,0 +1,27 @@
+   name: Static Analysis
+
+   on: [push, pull_request]
+
+   jobs:
+     analyze:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v4
+
+         - uses: actions/setup-python@v5
+           with:
+             python-version: "3.12"
+
+         - name: Install tools
+           run: pip install pylint bandit flake8
+
+         - name: Pylint (must score 9.5 or higher)
+           run: pylint --fail-under=9.5 gym_system.py
+
+         - name: Bandit
+           if: always()
+           run: bandit -r gym_system.py
+
+         - name: Flake8
+           if: always()
+           run: flake8 gym_system.py
